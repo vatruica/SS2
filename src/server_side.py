@@ -23,11 +23,11 @@ soc.listen(5)
 #it will display to the client its ip
 #what hes writing and send a message back
 while True:
-   channel, details = soc.accept()
-   print 'We have opened a connection with', details
-   incoming_message = channel.recv ( 100 )
-   print details,'---->', incoming_message
-   channel.send ( 'Green-eyed monster.' )
-   channel.close()
+    channel, details = soc.accept()
+    print 'We have opened a connection with', details
+    INCOMING_MESSAGE = channel.recv ( 100 )
+    print details,'---->', INCOMING_MESSAGE
+    channel.send ( 'Green-eyed monster.' )
+    channel.close()
 
 

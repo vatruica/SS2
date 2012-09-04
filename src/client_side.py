@@ -13,8 +13,10 @@ clientsoc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 #connecting to our server
 clientsoc.connect((HOST,PORT))
 #sending a message
-clientsoc.send("heyy, this is client")
-#receiving the answer
-clientsoc.recv(100)
-#closing the socket
-clientsoc.close()
+while True:
+    DATA=raw_input("command me >>> ")
+    clientsoc.send(DATA)
+    #receiving the answer
+    clientsoc.recv(100)
+    #closing the socket
+    #clientsoc.close()
