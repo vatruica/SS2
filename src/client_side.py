@@ -5,10 +5,13 @@ Created on Sep 4, 2012
 '''
 import socket
 
+#defining some variables for later use
+HOST='127.0.0.1'
+PORT=5432
 #creating the socket
 clientsoc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 #connecting to our server
-clientsoc.connect(('127.0.0.1',5432))
+clientsoc.connect((HOST,PORT))
 #sending a message
 clientsoc.send("heyy, this is client")
 #receiving the answer
