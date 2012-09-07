@@ -6,17 +6,24 @@ Created on Sep 4, 2012
 import socket
 
 #defining some variables for later use
-HOST='127.0.0.1'
+HOST='192.168.1.106'
 PORT=5432
-#creating the socket
-clientsoc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#connecting to our server
-clientsoc.connect((HOST,PORT))
-#sending a message
+
 while True:
-    DATA=raw_input("command me >>> ")
-    clientsoc.send(DATA)
+    #creating the socket
+    cl_soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    
+    cl_soc.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    #connecting to our server
+    cl_soc.connect((HOST,PORT))
+    #sending a message
+    #clientsoc.send("blabla")
+    cl_soc.send(str(raw_input("write here:")))
     #receiving the answer
-    clientsoc.recv(100)
+    print( cl_soc.recv(100) )
     #closing the socket
-    #clientsoc.close()
+    cl_soc.close()
+
+
+
+ 
