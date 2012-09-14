@@ -6,7 +6,7 @@ Created on Sep 4, 2012
 import socket
 
 #defining some variables for later use
-HOST='192.168.1.106'
+HOST='127.0.0.1'
 PORT=5432
 
 while True:
@@ -17,12 +17,17 @@ while True:
     #connecting to our server
     cl_soc.connect((HOST,PORT))
     #sending a message
-    #clientsoc.send("blabla")
-    cl_soc.send(str(raw_input("write here:")))
-    #receiving the answer
-    print( cl_soc.recv(100) )
-    #closing the socket
-    cl_soc.close()
+    MSG = raw_input("write here:")
+    if MSG != 'exit':
+
+        cl_soc.send(str(MSG))
+        #receiving the answer
+        print( cl_soc.recv(100) )
+        #closing the socket
+        cl_soc.close()
+    else:
+        cl_soc.close()
+        exit()
 
 
 
