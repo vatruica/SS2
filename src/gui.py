@@ -1,32 +1,22 @@
-import Tkinter
-from Tkinter import *
-import client_side as CS
-import socket
-
 import Tkinter as tk
+from Tkinter import *
+import socket
 
 HOST='127.0.0.1'
 PORT=5432
 
 class guiclass():
-    '''
-    classdocs
-    '''
-
 
     def __init__(self):
-        '''
-        Constructor
-        '''
-        
+           
         self.other = tk.Toplevel()
         self.other.title("Victors Window")
-        self.otherlabel = tk.Label(self.other, text='SEND COMMAND TO RS485', relief = tk.RIDGE)
+        self.otherlabel = tk.Label(self.other, text='SEND YOUR COMMAND TO RS485', relief = tk.RIDGE)
         self.otherlabel.pack(side=tk.TOP, fill = tk.BOTH, expand = tk.YES)
         self.otherbutton = tk.Button(self.other, text='TURN ON', command=self.send_on).pack(side=tk.TOP)
-        self.otherbutton = tk.Button(self.other, text='TURN OFF', command=self.send_off).pack(side=tk.TOP)
-        self.otherbutton = tk.Button(self.other, text='SEND', command=self.send_input).pack(side=tk.TOP)
-        self.otherbutton = tk.Button(self.other, text='QUIT', command=self.other.quit).pack(side=tk.BOTTOM)
+        self.otherbutton1 = tk.Button(self.other, text='TURN OFF', command=self.send_off).pack(side=tk.TOP)
+        self.otherbutton2 = tk.Button(self.other, text='SEND', command=self.send_input).pack(side=tk.TOP)
+        self.otherbutton3 = tk.Button(self.other, text='QUIT', command=self.other.quit).pack(side=tk.BOTTOM)
         self.outputvalue = tk.StringVar()
         self.otherlabel1 = tk.Label(self.other, textvariable =self.outputvalue).pack(side=tk.BOTTOM)
         

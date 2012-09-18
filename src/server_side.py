@@ -72,5 +72,3 @@ while True:
         channel.send ("server has received: "+str(MSG)+"\n-forwarding command to rs485-\nrs485 says: "+str(serial_connection(MSG)))
         #closing the socket connection
         channel.close()
-
-
