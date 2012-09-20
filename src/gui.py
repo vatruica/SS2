@@ -2,6 +2,8 @@ import Tkinter as tk
 from Tkinter import *
 import socket
 
+
+
 HOST='127.0.0.1'
 PORT=5432
 
@@ -15,6 +17,9 @@ class guiclass():
         self.otherlabel.pack(side=tk.TOP, fill = tk.BOTH, expand = tk.YES)
         self.otherbutton = tk.Button(self.other, text='TURN ON', command=self.send_on).pack(side=tk.TOP)
         self.otherbutton1 = tk.Button(self.other, text='TURN OFF', command=self.send_off).pack(side=tk.TOP)
+        self.otherbutton2 = tk.Button(self.other, text='LED2', command=self.LED2).pack(side=tk.TOP)
+        self.otherbutton2 = tk.Button(self.other, text='LED3', command=self.LED3).pack(side=tk.TOP)
+        self.otherbutton2 = tk.Button(self.other, text='PARTY', command=self.LED_party).pack(side=tk.TOP)
         self.otherbutton2 = tk.Button(self.other, text='SEND', command=self.send_input).pack(side=tk.TOP)
         self.otherbutton3 = tk.Button(self.other, text='QUIT', command=self.other.quit).pack(side=tk.BOTTOM)
         self.outputvalue = tk.StringVar()
@@ -29,7 +34,7 @@ class guiclass():
         cl_soc.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         #connecting to our server
         cl_soc.connect((HOST,PORT)) 
-        MSG = '#020002'
+        MSG = '#0200FF'
         cl_soc.send(str(MSG))
         #receiving the answer
         #print( cl_soc.recv(100) )
@@ -48,6 +53,38 @@ class guiclass():
         self.outputvalue.set(str(cl_soc.recv(100)))
         cl_soc.close()
     
+    def LED2(self):
+        #creating the socket
+        cl_soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        cl_soc.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        #connecting to our server
+        cl_soc.connect((HOST,PORT)) 
+        MSG = '#020002'
+        cl_soc.send(str(MSG))
+        #receiving the answer
+        self.outputvalue.set(str(cl_soc.recv(100)))
+        cl_soc.close()
+        
+    def LED3(self):
+        #creating the socket
+        cl_soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        cl_soc.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        #connecting to our server
+        cl_soc.connect((HOST,PORT)) 
+        MSG = '#020004'
+        cl_soc.send(str(MSG))
+        #receiving the answer
+        self.outputvalue.set(str(cl_soc.recv(100)))
+        cl_soc.close()
+        
+    def LED_party(self):
+        try:
+            while True:
+                self.LED2()
+                self.LED3()
+        except:
+            KeyboardInterrupt
+            
     def send_input(self):       
         #creating the socket
         cl_soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
